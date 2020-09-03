@@ -1,0 +1,18 @@
+﻿@using Simple_CMS.Models.Service
+@model Simple_CMS.ViewModels.Roles.ChangeRoleViewModel
+
+<h2>Изменение ролей для пользователя @Model.UserName</h2>
+
+@if (Model.UserName != IdentityConfig.AdminName)
+{
+    <form asp-controller="Role" asp-action="EditRole" method="post">
+        <input type="hidden" name="userId" value="@Model.UserId" />
+        <div>
+            @foreach (var role in Model.AllRoles)
+            {
+                <input type="checkbox" name="roles" value="@role.Name" @(Model.UserRoles.Contains(role.Name) ? "checked=\"checked\"" : "") />@role.Name <br />
+            }
+        </div>
+        <input type="submit" value="Сохранить" />
+    </form>
+}

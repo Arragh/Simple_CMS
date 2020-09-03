@@ -1,0 +1,35 @@
+﻿<div align="center">
+    <table border="1" width="1200" height="200" bgcolor="lightgreen" cellpadding="0" cellspacing="0">
+        <tr height="150">
+            <td align="center">
+                @Simple_CMS.Models.Service.WebsiteConfig.Simple_WebsiteName<br />
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <p>@User.Identity.Name</p>
+                    <form method="post" asp-controller="Account" asp-action="Logout">
+                        <input type="submit" value="Выход" />
+                    </form>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login">Вход</a>
+                    <a asp-controller="Account" asp-action="Register">Регистрация</a>
+                }
+            </td>
+        </tr>
+        <tr height="50">
+            <td align="center">
+                <a asp-action="Index" asp-controller="News">Главная</a>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <a asp-controller="Gallery" asp-action="Index">Галерея</a>
+                @if (User.IsInRole("admin"))
+                {
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    @Html.ActionLink("Дополнительные страницы", "Index", "Page")
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    @Html.ActionLink("Права доступа", "Index", "Role")
+                }
+            </td>
+        </tr>
+    </table>
+</div>

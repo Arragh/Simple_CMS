@@ -1,0 +1,27 @@
+﻿@model Simple_CMS.ViewModels.Page.AddPageViewModel
+
+<form asp-action="AddPage" asp-controller="Page" method="post">
+    <div>
+        <label asp-for="PageTitle"></label><br />
+        <input type="text" asp-for="PageTitle" width="300" />
+        @Html.ValidationMessageFor(p => p.PageTitle)<br />
+    </div>
+    <div>
+        <label asp-for="PageBody"></label><br />
+        @await Html.PartialAsync("BBcodeButtons")
+        <br />
+        <textarea id="textarea" asp-for="PageBody" rows="30" cols="100"></textarea>
+        @Html.ValidationMessageFor(p => p.PageBody)
+    </div>
+    <div>
+        <input type="submit" value="Создать" />
+    </div>
+</form>
+
+@section scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        await Html.RenderPartialAsync("_BBcodeScript");
+    }
+}

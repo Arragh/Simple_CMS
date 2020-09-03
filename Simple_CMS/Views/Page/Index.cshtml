@@ -1,0 +1,23 @@
+﻿@model Dictionary<Guid, string>
+
+<h2>Page/Index</h2>
+
+@Html.ActionLink("Создать страницу", "AddPage", "Page")
+
+<br />
+<br />
+<br />
+
+@foreach (var item in Model)
+{
+    @Html.ActionLink(item.Value, "ViewPage", "Page", new { pageId = item.Key })
+    <br />
+    <form asp-action="DeletePage" asp-controller="Page" method="post">
+        <input type="hidden" name="pageId" value="@item.Key" />
+        <input type="checkbox" name="isChecked" value="true" />
+        <span>Подтвердить удаление</span>
+        <input type="submit" value="Удалить" />
+    </form>
+    <br />
+    <br />
+}

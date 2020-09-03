@@ -1,0 +1,18 @@
+﻿@using Simple_CMS.Models.Service
+@model IEnumerable<Simple_CMS.Models.Identity.User>
+
+<h2>Список пользователей</h2>
+<table class="table">
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.UserName</td>
+            <td>
+                @if (user.UserName != IdentityConfig.AdminName)
+                {
+                    <a asp-controller="Role" asp-action="EditRole" asp-route-userid="@user.Id">Права доступа</a>
+                }
+            </td>
+        </tr>
+    }
+</table>

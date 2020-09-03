@@ -1,0 +1,70 @@
+﻿@model Simple_CMS.ViewModels.News.IndexViewModel
+
+@if (User.IsInRole("admin"))
+{
+    <center>@Html.ActionLink("Добавить новость", "AddNews", "News")</center>
+}
+
+@foreach (var news in Model.News)
+{
+    int imagesCount = 0;
+    <table border="1" width="100%">
+        <tr bgcolor="#47A7C7">
+            <td width="80%">@news.NewsTitle</td>
+            <td width="20%">@news.NewsDate.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <span style="white-space: pre-line">@news.NewsBody</span><br />
+                <center>
+                    @foreach (var image in Model.NewsImages)
+                    {
+                        if (image.NewsId == news.Id)
+                        {
+                            <a href="@Url.Content(image.ImagePathNormal)"><img src="@Url.Content(image.ImagePathScaled)" /></a>
+                            imagesCount++;
+                        }
+                    }
+                </center>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @if (User.IsInRole("admin"))
+                {
+                    <form asp-action="DeleteNews" asp-controller="News" method="post">
+                        <input type="hidden" name="newsId" value="@news.Id" />
+                        <input type="checkbox" name="isChecked" value="true" />
+                        <input type="hidden" name="imagesCount" value="@imagesCount" />
+                        <span>Подтвердить удаление</span>
+                        <input type="submit" value="Удалить" />
+                    </form>
+                    <form asp-action="EditNews" asp-controller="News" method="get">
+                        <input type="hidden" name="newsId" value="@news.Id" />
+                        <input type="submit" value="Редактировать" />
+                    </form>
+                }
+            </td>
+            <td align="right">
+                @news.UserName
+            </td>
+        </tr>
+    </table>
+    <br />
+}
+
+<center>
+    @for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        if (i != Model.CurrentPage)
+        {
+            @Html.ActionLink(i.ToString(), "Index", new { pageNumber = i })
+            <span>&nbsp;</span>
+        }
+        else
+        {
+            @i
+            <span>&nbsp;</span>
+        }
+    }
+</center>

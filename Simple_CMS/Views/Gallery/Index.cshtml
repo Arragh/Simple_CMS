@@ -1,0 +1,51 @@
+﻿@model Simple_CMS.ViewModels.Gallery.IndexViewModel
+
+<h2>Gallery/Index</h2>
+@if (User.IsInRole("admin"))
+{
+    @Html.ActionLink("Создать галерею", "AddGallery", "Gallery")
+}
+<br />
+<br />
+
+<table border="1" width="100%">
+    @foreach (var gallery in Model.Galleries)
+    {
+        <tr>
+            <td width="300"><a asp-action="ViewGallery" asp-controller="Gallery" asp-route-galleryId="@gallery.Id"><img src="@Url.Content(gallery.GalleryPreviewImage)" /></a></td>
+            <td>
+                @Html.ActionLink(gallery.GalleryTitle, "ViewGallery", "Gallery", new { galleryId = gallery.Id })<br />
+                <span style="white-space: pre-line">@gallery.GalleryDescription</span><br />
+                @if (User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Редактировать", "EditGallery", "Gallery", new { galleryId = gallery.Id })
+                    <form asp-action="DeleteGallery" asp-controller="Gallery" method="post">
+                        <input type="hidden" name="galleryId" value="@gallery.Id" />
+                        <input type="checkbox" name="isChecked" value="true" />
+                        <span>Подтвердить удаление</span>
+                        <input type="submit" value="Удалить" />
+                    </form>
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<br />
+<br />
+
+<center>
+    @for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        if (i != Model.CurrentPage)
+        {
+            @Html.ActionLink(i.ToString(), "Index", new { pageNumber = i })
+            <span>&nbsp;</span>
+        }
+        else
+        {
+            @i
+            <span>&nbsp;</span>
+        }
+    }
+</center>

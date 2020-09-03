@@ -1,0 +1,29 @@
+﻿@model Simple_CMS.ViewModels.News.AddNewsViewModel
+
+<form asp-controller="News" asp-action="AddNews" method="post" enctype="multipart/form-data">
+    <div>
+        <label asp-for="NewsTitle"></label><br />
+        <input type="text" asp-for="NewsTitle" width="300" />
+        @Html.ValidationMessageFor(t => t.NewsTitle)<br />
+    </div>
+    <div>
+        <label asp-for="NewsBody"></label><br />
+        <textarea asp-for="NewsBody" rows="30" cols="100"></textarea>
+        @Html.ValidationMessageFor(b => b.NewsBody)<br />
+    </div>
+    <div>
+        <font color="red">@Html.ValidationMessageFor(f => f.NewsImage)</font><br />
+        @for (int i = 0; i < 3; i++)
+        {
+            <input type="file" name="uploads" accept=".jpg,.jpeg,.png,.gif" /><br />
+        }
+    </div>
+    <div>
+        <input type="submit" value="Опубликовать" />
+    </div>
+</form>
+
+@section scripts
+{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
