@@ -1,4 +1,5 @@
-﻿using Simple_CMS.Models.News;
+﻿using Simple_CMS.AbstractModels.ViewModels.News;
+using Simple_CMS.Models.News;
 using System;
 using System.Collections.Generic;
 using System.Linq;

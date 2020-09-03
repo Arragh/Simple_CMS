@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Simple_CMS.AbstractModels.ViewModels.Account;
+using System.ComponentModel.DataAnnotations;
 
 namespace Simple_CMS.ViewModels.Account
 {

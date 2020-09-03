@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simple_CMS.AbstractModels.ViewModels.Account;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;

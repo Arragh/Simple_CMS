@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Simple_CMS.ViewModels.Account
+namespace Simple_CMS.AbstractModels.ViewModels.Account
 {
-    public class AbstractAccountViewModel
+    public abstract class AbstractAccountViewModel
     {
         [Required(ErrorMessage = "Введите имя пользователя.")]
         [Display(Name = "Имя пользователя")]

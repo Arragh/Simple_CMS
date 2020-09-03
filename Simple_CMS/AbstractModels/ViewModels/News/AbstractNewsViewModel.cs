@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Simple_CMS.ViewModels.News
+namespace Simple_CMS.AbstractModels.ViewModels.News
 {
     public abstract class AbstractNewsViewModel
     {
