@@ -1,9 +1,5 @@
 ﻿using Simple_CMS.Models.News;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Simple_CMS.AbstractModels.ViewModels.News
 {

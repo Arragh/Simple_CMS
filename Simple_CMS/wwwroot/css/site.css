@@ -1,0 +1,9 @@
+﻿a, a:visited {
+    font-family: Arial;
+    color: #0094ff;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+    background-color: #ff6a00;
+}

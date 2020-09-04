@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Simple_CMS.Models.Service
+﻿namespace Simple_CMS.Models.Service
 {
     public class IdentityConfig
     {
