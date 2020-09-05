@@ -21,6 +21,8 @@ namespace Simple_CMS.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            ViewBag.Title = "Регистрация нового пользователя";
+
             return View();
         }
         #endregion
@@ -54,6 +56,8 @@ namespace Simple_CMS.Controllers
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
+            ViewBag.Title = "Авторизация";
+
             return View(new LoginViewModel { ReturnUrl = returnUrl });
         }
         #endregion

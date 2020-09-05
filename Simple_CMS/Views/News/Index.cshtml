@@ -63,12 +63,13 @@
     {
         if (i != Model.CurrentPage)
         {
-            @Html.ActionLink(i.ToString(), "Index", new { pageNumber = i })
+            @*@Html.ActionLink(i.ToString(), "Index", new { pageNumber = i })*@
+            <a class="blue" asp-action="Index" asp-controller="News" asp-route-pageNumber="@i">@i</a>
             <span>&nbsp;</span>
         }
         else
         {
-            @i
+            <span class="text">@i</span>
             <span>&nbsp;</span>
         }
     }

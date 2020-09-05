@@ -117,7 +117,8 @@ span.logo {
 }
 span.text {
     font-family: Verdana;
-    color:white;
+    color: #1e5791;
+    font-size: 16px;
 }
 span.username {
     font-family: Verdana;

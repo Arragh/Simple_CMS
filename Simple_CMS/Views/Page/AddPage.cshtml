@@ -9,10 +9,11 @@
                     <input type="text" asp-for="PageTitle" width="300" />
                     @Html.ValidationMessageFor(p => p.PageTitle)<br />
                 </div>
+                <br />
                 <div>
-                    <label asp-for="PageBody"></label><br />
+                    <label asp-for="PageBody"></label><br /><br />
                     @await Html.PartialAsync("BBcodeButtons")
-                    <br />
+                    <br /><br />
                     <textarea id="textarea" asp-for="PageBody" rows="30" cols="100"></textarea>
                     @Html.ValidationMessageFor(p => p.PageBody)
                 </div>

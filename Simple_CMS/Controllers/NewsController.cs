@@ -83,6 +83,8 @@ namespace Simple_CMS.Controllers
         [HttpGet]
         public IActionResult AddNews()
         {
+            ViewBag.Title = "Создать новость";
+
             return View();
         }
         #endregion
@@ -257,6 +259,9 @@ namespace Simple_CMS.Controllers
                 UserName = news.UserName,
                 ImagesCount = images.Count
             };
+
+            ViewBag.Title = $"Редактирование новости \"{news.NewsTitle}\"";
+
             // Передаем модель в представление
             return View(model);
         }
