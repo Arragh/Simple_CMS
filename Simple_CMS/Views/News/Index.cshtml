@@ -2,34 +2,34 @@
 
 @if (User.IsInRole("admin"))
 {
-    <center>@Html.ActionLink("Добавить новость", "AddNews", "News")</center>
+    <center><a class="blue" asp-action="AddNews" asp-controller="News">Добавить новость</a></center><br />
 }
 
 @foreach (var news in Model.News)
 {
     int imagesCount = 0;
-    <table border="1" width="100%">
-        <tr bgcolor="#47A7C7">
-            <td width="80%">@news.NewsTitle</td>
-            <td width="20%">@news.NewsDate.ToShortDateString()</td>
+    <table class="content" width="100%">
+        <tr>
+            <td class="newstitle" width="80%" colspan="2">@news.NewsTitle</td>
+            <td class="newsdate" width="20%">@news.NewsDate.ToShortDateString()</td>
         </tr>
         <tr>
-            <td colspan="2">
-                <span style="white-space: pre-line">@news.NewsBody</span><br />
+            <td class="content" colspan="3">
+                <span class="newsbody">@news.NewsBody</span><br /><br />
                 <center>
                     @foreach (var image in Model.NewsImages)
                     {
                         if (image.NewsId == news.Id)
                         {
-                            <a href="@Url.Content(image.ImagePathNormal)"><img src="@Url.Content(image.ImagePathScaled)" /></a>
+                            <a href="@Url.Content(image.ImagePathNormal)"><img class="newsimg" src="@Url.Content(image.ImagePathScaled)" /></a>
                             imagesCount++;
                         }
                     }
                 </center>
             </td>
         </tr>
-        <tr>
-            <td>
+        <tr class="newsbottom">
+            <td width="40%" align="center">
                 @if (User.IsInRole("admin"))
                 {
                     <form asp-action="DeleteNews" asp-controller="News" method="post">
@@ -39,18 +39,23 @@
                         <span>Подтвердить удаление</span>
                         <input type="submit" value="Удалить" />
                     </form>
+                }
+            </td>
+            <td width="40%" align="center">
+                @if (User.IsInRole("admin"))
+                {
                     <form asp-action="EditNews" asp-controller="News" method="get">
                         <input type="hidden" name="newsId" value="@news.Id" />
                         <input type="submit" value="Редактировать" />
                     </form>
                 }
             </td>
-            <td align="right">
+            <td class="newsusername">
                 @news.UserName
             </td>
         </tr>
     </table>
-    <br />
+    <br /><br /><br /><br />
 }
 
 <center>

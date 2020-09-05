@@ -2,8 +2,14 @@
 
 @if (User.IsInRole("admin"))
 {
-    @Html.ActionLink("Редактировать", "EditPage", "Page", new { pageId = ViewBag.PageId })
+    @*@Html.ActionLink("Редактировать", "EditPage", "Page", new { pageId = ViewBag.PageId })*@
+    <a class="blue" asp-action="EditPage" asp-controller="Page" asp-route-pageId="@ViewBag.PageId">Редактировать</a><br /><br />
 }
 
-<h3>@Model.PageTitle</h3>
-<p>@Html.Raw(Model.PageBody)</p>
+<table class="content">
+    <tr>
+        <td class="content">
+            <span class="newsbody">@Html.Raw(Model.PageBody)</span>
+        </td>
+    </tr>
+</table>

@@ -1,9 +1,150 @@
-﻿a, a:visited {
-    font-family: Arial;
-    color: #0094ff;
-    text-decoration: none;
+﻿body {
+    background-color: #ffffff;
+    margin: 0px;
+}
+
+a, a:visited {
+    font-family: Verdana;
+    font-weight: bold;
+    text-decoration: underline;
+    color: white;
 }
 a:hover {
-    text-decoration: underline;
-    background-color: #ff6a00;
+    text-decoration: none;
+}
+
+a.registration {
+    font-size: 14px;
+    font-weight: unset;
+}
+a.white {
+    color: white;
+}
+a.blue {
+    color: #1e5791;
+}
+
+table.header {
+    width: 100%;
+    padding: 0px;
+    border-spacing: 0px;
+    background-color: #1e5791;
+}
+table.renderbody {
+    width: 1200px;
+    height: 800px;
+    padding: 0px;
+}
+table.bottom {
+    width: 100%;
+    height: 150px;
+    background-color: #1e5791;
+}
+table.content {
+    width: 100%;
+    background-color: #1e5791;
+}
+tr.navmenu {
+    padding: 0px;
+    height: 50px;
+    background-color: #1e5791;
+}
+td.logo {
+    padding: 0px;
+    width: 1200px;
+    background-color: #1e5791;
+    text-align: center;
+    opacity: inherit;
+}
+td.textfield {
+    padding-bottom: 20px;
+    border-color: #1e5791;
+    border-bottom-style: solid;
+    border-top-style: solid;
+}
+td.username {
+    width: 1200px;
+    text-align: right;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: Arial;
+}
+td.newstitle {
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    font-family: Verdana;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 20px;
+}
+td.newsdate {
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: right;
+    padding-right: 10px;
+}
+td.newsusername {
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+td.renderbody {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+td.content {
+    background-color: #f2f2f2;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+span.logo {
+    font-family: Verdana;
+    color: white;
+    font-size: xx-large;
+}
+span.text {
+    font-family: Verdana;
+    color:white;
+}
+span.username {
+    font-family: Verdana;
+    color: white;
+    padding-right: 10px;
+}
+span.newstitle {
+    font-family: Arial;
+    color: #1e5791;
+    font-weight: bold;
+    font-size: 16px;
+}
+span.newsbody {
+    font-family: Verdana;
+    font-size: 12px;
+    white-space: pre-line;
+}
+
+img.newsimg {
+    padding: 1px;
+    border: 1px solid;
+    border-color: #1e5791;
+}
+
+p.pagetitle {
+    font-family: Arial;
+    color: #1e5791;
+    font-weight: bold;
+    font-size: 20px;
 }

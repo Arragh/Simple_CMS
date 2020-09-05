@@ -21,6 +21,8 @@ namespace Simple_CMS.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.Title = "Дополнительные страницы";
+
             List<Page> pages = await _websiteDB.Pages.ToListAsync();
             Dictionary<Guid, string> dictionary = new Dictionary<Guid, string>();
             foreach (var page in pages)
@@ -35,6 +37,8 @@ namespace Simple_CMS.Controllers
         [HttpGet]
         public IActionResult AddPage()
         {
+            ViewBag.Title = "Создать дополнительную страницу";
+
             return View();
         }
         #endregion
@@ -77,6 +81,8 @@ namespace Simple_CMS.Controllers
                 PageBody = SpecSymbolsToEdit(page.PageBody) // Замена десятичных значений на символы, для удобства
             };
 
+            ViewBag.Title = $"Редактирование страницы \"{page.PageTitle}\"";
+
             return View(model);
         }
         #endregion
@@ -114,7 +120,7 @@ namespace Simple_CMS.Controllers
                 PageBody = BbCode(page.PageBody)
             };
 
-            ViewBag.Title = page.PageTitle;
+            ViewBag.Title = $"\"{page.PageTitle}\"" ;
 
             return View(model);
         }
@@ -149,7 +155,7 @@ namespace Simple_CMS.Controllers
                        .Replace(">", "&gt;")
                        .Replace("\r\n", "<br>")
                        .Replace("\\", "&#x5C")
-                       .Replace(" ", "&nbsp;");
+                       .Replace("  ", "&nbsp;&nbsp;");
         }
 
         string SpecSymbolsToEdit(string text)

@@ -33,6 +33,8 @@ namespace Simple_CMS.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index(int pageNumber = 1)
         {
+            ViewBag.Title = "Галерея";
+
             // Количество записей на страницу
             int pageSize = 12;
 
@@ -65,6 +67,8 @@ namespace Simple_CMS.Controllers
         [HttpGet]
         public IActionResult AddGallery()
         {
+            ViewBag.Title = "Создание галереи";
+
             return View();
         }
         #endregion
@@ -210,6 +214,9 @@ namespace Simple_CMS.Controllers
                 UserName = gallery.UserName,
                 ImagesCount = images.Count
             };
+
+            ViewBag.Title = $"Галерея \"{model.GalleryTitle}\"";
+
             // Передаем модель в представление
             return View(model);
         }
@@ -357,6 +364,8 @@ namespace Simple_CMS.Controllers
                 GalleryDescription = gallery.GalleryDescription,
                 GalleryPreviewImage = gallery.GalleryPreviewImage
             };
+
+            ViewBag.Title = $"Редактирование галереи \"{model.GalleryTitle}\"";
 
             // Возвращаем модель в представление
             return View(model);

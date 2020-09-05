@@ -1,24 +1,26 @@
 ﻿@model Simple_CMS.ViewModels.Gallery.IndexViewModel
 
-<h2>Gallery/Index</h2>
 @if (User.IsInRole("admin"))
 {
-    @Html.ActionLink("Создать галерею", "AddGallery", "Gallery")
+    @*@Html.ActionLink("Создать галерею", "AddGallery", "Gallery")*@
+    <a class="blue" asp-action="AddGallery" asp-controller="Gallery">Создать галерею</a>
 }
 <br />
 <br />
 
-<table border="1" width="100%">
+<table class="content">
     @foreach (var gallery in Model.Galleries)
     {
         <tr>
             <td width="300"><a asp-action="ViewGallery" asp-controller="Gallery" asp-route-galleryId="@gallery.Id"><img src="@Url.Content(gallery.GalleryPreviewImage)" /></a></td>
-            <td>
-                @Html.ActionLink(gallery.GalleryTitle, "ViewGallery", "Gallery", new { galleryId = gallery.Id })<br />
-                <span style="white-space: pre-line">@gallery.GalleryDescription</span><br />
+            <td class="content">
+                @*@Html.ActionLink(gallery.GalleryTitle, "ViewGallery", "Gallery", new { galleryId = gallery.Id })*@
+                <a class="blue" asp-action="ViewGallery" asp-controller="Gallery" asp-route-galleryId="@gallery.Id">@gallery.GalleryTitle</a><br />
+                <span style="white-space: pre-line">@gallery.GalleryDescription</span><br /><br />
                 @if (User.IsInRole("admin"))
                 {
-                    @Html.ActionLink("Редактировать", "EditGallery", "Gallery", new { galleryId = gallery.Id })
+                    @*@Html.ActionLink("Редактировать", "EditGallery", "Gallery", new { galleryId = gallery.Id })*@
+                    <a class="blue" asp-action="EditGallery" asp-controller="Gallery" asp-route-galleryId="@gallery.Id">Редактировать</a>
                     <form asp-action="DeleteGallery" asp-controller="Gallery" method="post">
                         <input type="hidden" name="galleryId" value="@gallery.Id" />
                         <input type="checkbox" name="isChecked" value="true" />

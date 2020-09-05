@@ -1,33 +1,40 @@
 ﻿<div align="center">
-    <table border="1" width="1200" height="200" bgcolor="lightgreen" cellpadding="0" cellspacing="0">
-        <tr height="150">
-            <td align="center">
-                @Simple_CMS.Models.Service.WebsiteConfig.Simple_WebsiteName<br />
+    <table class="header">
+        <tr>
+            <td></td>
+            <td class="username">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <p>@User.Identity.Name</p>
                     <form method="post" asp-controller="Account" asp-action="Logout">
-                        <input type="submit" value="Выход" />
+                        <span class="username">@User.Identity.Name</span><input type="submit" value="Выход" />
                     </form>
                 }
                 else
                 {
-                    <a asp-controller="Account" asp-action="Login">Вход</a>
-                    <a asp-controller="Account" asp-action="Register">Регистрация</a>
+                    <a class="registration" asp-controller="Account" asp-action="Login">Вход</a>
+                    <a class="registration" asp-controller="Account" asp-action="Register">Регистрация</a>
                 }
             </td>
+            <td></td>
         </tr>
-        <tr height="50">
-            <td align="center">
-                <a asp-action="Index" asp-controller="News">Главная</a>
+        <tr height="150">
+            <td class="logo" colspan="3">
+                <span class="logo">@Simple_CMS.Models.Service.WebsiteConfig.Simple_WebsiteName</span>
+            </td>
+        </tr>
+        <tr class="navmenu">
+            <td align="center" colspan="3">
+                <a class="navigation" asp-action="Index" asp-controller="News">Главная</a>
                 <span>&nbsp;&nbsp;&nbsp;</span>
-                <a asp-controller="Gallery" asp-action="Index">Галерея</a>
+                <a class="navigation" asp-controller="Gallery" asp-action="Index">Галерея</a>
                 @if (User.IsInRole("admin"))
                 {
                     <span>&nbsp;&nbsp;&nbsp;</span>
-                    @Html.ActionLink("Дополнительные страницы", "Index", "Page")
+                    @*@Html.ActionLink("Дополнительные страницы", "Index", "Page")*@
+                    <a class="navigation" asp-action="Index" asp-controller="Page">Дополнительные страницы</a>
                     <span>&nbsp;&nbsp;&nbsp;</span>
-                    @Html.ActionLink("Права доступа", "Index", "Role")
+                    @*@Html.ActionLink("Права доступа", "Index", "Role")*@
+                    <a class="navigation" asp-action="Index" asp-controller="Role">Права доступа</a>
                 }
             </td>
         </tr>

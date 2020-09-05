@@ -1,25 +1,31 @@
 ﻿@model Simple_CMS.ViewModels.Page.EditPageViewModel
 
-<form asp-action="EditPage" asp-controller="Page" method="post">
-    <div>
-        <input type="hidden" asp-for="PageId" value="@Model.PageId" />
-    </div>
-    <div>
-        <label asp-for="PageTitle"></label><br />
-        <input type="text" asp-for="PageTitle" width="300" />
-        @Html.ValidationMessageFor(p => p.PageTitle)<br />
-    </div>
-    <div>
-        <label asp-for="PageBody"></label><br />
-        @await Html.PartialAsync("BBcodeButtons")
-        <br />
-        <textarea id="textarea" asp-for="PageBody" rows="30" cols="100"></textarea>
-        @Html.ValidationMessageFor(p => p.PageBody)
-    </div>
-    <div>
-        <input type="submit" value="Сохранить" />
-    </div>
-</form>
+<table class="content">
+    <tr>
+        <td class="content">
+            <form asp-action="EditPage" asp-controller="Page" method="post">
+                <div>
+                    <input type="hidden" asp-for="PageId" value="@Model.PageId" />
+                </div>
+                <div>
+                    <label asp-for="PageTitle"></label><br />
+                    <input type="text" asp-for="PageTitle" width="300" />
+                    @Html.ValidationMessageFor(p => p.PageTitle)<br />
+                </div>
+                <div>
+                    <label asp-for="PageBody"></label><br />
+                    @await Html.PartialAsync("BBcodeButtons")
+                    <br />
+                    <textarea id="textarea" asp-for="PageBody" rows="30" cols="100"></textarea>
+                    @Html.ValidationMessageFor(p => p.PageBody)
+                </div>
+                <div>
+                    <input type="submit" value="Сохранить" />
+                </div>
+            </form>
+        </td>
+    </tr>
+</table>
 
 @section scripts
 {

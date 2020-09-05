@@ -1,51 +1,58 @@
 ﻿@model Simple_CMS.ViewModels.Gallery.ViewGalleryViewModel
 @using Simple_CMS.Models.Service
 
-<h3>@Model.GalleryTitle</h3>
 <p>@Model.GalleryDescription</p>
 <br />
-@if (User.IsInRole("admin"))
-{
-    int count = WebsiteConfig.ImagesPerGallery - Model.ImagesCount;
-    <span>Доступный лимит для загрузки: @count</span>
-    <br />
 
-    @if (Model.ImagesCount < WebsiteConfig.ImagesPerGallery)
-    {
-        <form asp-controller="Gallery" asp-action="ViewGallery" method="post" enctype="multipart/form-data">
-            <div>
-                <input type="hidden" asp-for="GalleryId" value="@Model.GalleryId" />
-                <input type="hidden" asp-for="GalleryDate" value="@Model.GalleryDate" />
-                <input type="hidden" asp-for="UserName" value="@Model.UserName" />
-                <input type="hidden" asp-for="GalleryTitle" value="@Model.GalleryTitle" />
-                <input type="hidden" asp-for="GalleryDescription" value="@Model.GalleryDescription" />
-            </div>
-            <div>
-                <font color="red">@Html.ValidationMessageFor(f => f.GalleryImage)</font><br />
-                <label asp-for="GalleryImage"></label><br />
-                <input type="file" name="uploads" accept=".jpg,.jpeg,.gif,.png" multiple="" /><br />
-            </div>
-            <div>
-                <input type="submit" value="Добавить" />
-            </div>
-        </form>
-    }
-}
-<br />
-<br />
-<center>
-    @if (Model.GalleryImages != null && Model.GalleryImages.Count > 0)
-    {
-        foreach (var image in Model.GalleryImages)
-        {
-            <a href="@Url.Content(image.ImagePathNormal)" target="_blank"><img src="@Url.Content(image.ImagePathScaled)" /></a>
-            if (User.IsInRole("admin"))
+<table class="content">
+    <tr>
+        <td class="content">
+            @if (User.IsInRole("admin"))
             {
-                <b>@Html.ActionLink("Del", "ViewGallery", "Gallery", new { galleryId = Model.GalleryId, imageToDeleteName = image.ImageName })</b>
+                int count = WebsiteConfig.ImagesPerGallery - Model.ImagesCount;
+                <span>Доступный лимит для загрузки: @count</span>
+                <br />
+
+                @if (Model.ImagesCount < WebsiteConfig.ImagesPerGallery)
+                {
+                    <form asp-controller="Gallery" asp-action="ViewGallery" method="post" enctype="multipart/form-data">
+                        <div>
+                            <input type="hidden" asp-for="GalleryId" value="@Model.GalleryId" />
+                            <input type="hidden" asp-for="GalleryDate" value="@Model.GalleryDate" />
+                            <input type="hidden" asp-for="UserName" value="@Model.UserName" />
+                            <input type="hidden" asp-for="GalleryTitle" value="@Model.GalleryTitle" />
+                            <input type="hidden" asp-for="GalleryDescription" value="@Model.GalleryDescription" />
+                        </div>
+                        <div>
+                            <font color="red">@Html.ValidationMessageFor(f => f.GalleryImage)</font><br />
+                            <label asp-for="GalleryImage"></label><br />
+                            <input type="file" name="uploads" accept=".jpg,.jpeg,.gif,.png" multiple="" /><br />
+                        </div>
+                        <div>
+                            <input type="submit" value="Добавить" />
+                        </div>
+                    </form>
+                }
             }
-        }
-    }
-</center>
+            <br />
+            <br />
+            <center>
+                @if (Model.GalleryImages != null && Model.GalleryImages.Count > 0)
+                {
+                    foreach (var image in Model.GalleryImages)
+                    {
+                        <a href="@Url.Content(image.ImagePathNormal)" target="_blank"><img class="newsimg" src="@Url.Content(image.ImagePathScaled)" /></a>
+                        if (User.IsInRole("admin"))
+                        {
+                            @*<b>@Html.ActionLink("Del", "ViewGallery", "Gallery", new { galleryId = Model.GalleryId, imageToDeleteName = image.ImageName })</b>*@
+                            <a class="blue" asp-action="ViewGallery" asp-controller="Gallery" asp-route-galleryId="@Model.GalleryId" asp-route-imageToDeleteName="@image.ImageName">Del</a>
+                        }
+                    }
+                }
+            </center>
+        </td>
+    </tr>
+</table>
 
 @section scripts
 {

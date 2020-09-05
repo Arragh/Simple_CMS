@@ -23,6 +23,8 @@ namespace Simple_CMS.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Title = "Список ролей";
+
             var model = _roleManager.Roles.ToList();
             return View(model);
         }
@@ -31,6 +33,8 @@ namespace Simple_CMS.Controllers
         [HttpGet]
         public IActionResult CreateRole()
         {
+            ViewBag.Title = "Создать роль";
+
             return View();
         }
         #endregion
@@ -60,10 +64,10 @@ namespace Simple_CMS.Controllers
 
         #region Удалить роль [POST
         [HttpPost]
-        public async Task<IActionResult> DeleteRole(string id)
+        public async Task<IActionResult> DeleteRole(string roleId)
         {
             // Ищем роль по Id
-            IdentityRole role = await _roleManager.FindByIdAsync(id);
+            IdentityRole role = await _roleManager.FindByIdAsync(roleId);
             // Если такая роль существует, заходим в тело условия
             if (role != null)
             {
@@ -77,6 +81,8 @@ namespace Simple_CMS.Controllers
         #region Список пользователей
         public IActionResult UserList()
         {
+            ViewBag.Title = "Список пользователей";
+
             List<User> users = _userManager.Users.ToList();
             return View(users);
         }
@@ -101,6 +107,9 @@ namespace Simple_CMS.Controllers
                     AllRoles = allRoles,
                     UserRoles = userRoles
                 };
+
+                ViewBag.Title = $"Редактирование ролей пользователя \"{user.UserName}\"";
+
                 return View(model);
             }
             return NotFound();

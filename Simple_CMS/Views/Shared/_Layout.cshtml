@@ -8,19 +8,22 @@
     @await Html.PartialAsync("MetatagsPartial")
 
 </head>
-<body bgcolor="darkgrey">
+<body>
 
     <!--Header-->
     @await Html.PartialAsync("HeaderPartial")
 
     <div align="center">
-        <table border="1" width="1200" height="800" bgcolor="lightblue" cellpadding="0" cellspacing="0">
+        <table class="renderbody">
             <tr>
-                <td valign="top">@RenderBody()</td>
+                <td class="renderbody" valign="top">
+                    <p class="pagetitle">@ViewBag.Title</p>
+                    @RenderBody()
+                </td>
             </tr>
         </table>
     </div>
-
+    <br /><br />
     <!--Bottom-->
     @await Html.PartialAsync("BottomPartial")
 
