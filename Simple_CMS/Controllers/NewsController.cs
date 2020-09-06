@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Simple_CMS.Models.Admin;
 using Simple_CMS.Models.News;
 using Simple_CMS.Models.Service;
 using Simple_CMS.ViewModels.News;
@@ -33,8 +34,10 @@ namespace Simple_CMS.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index(int pageNumber = 1) // Страница по умолчанию = 1
         {
+            Settings settings = await _websiteDB.Settings.FirstAsync(s => s.SettingsName == "baseSettings");
+
             // Количество записей на страницу
-            int pageSize = 10;
+            int pageSize = settings.NewsPerPage;
 
             // Формируем список записей для обработки перед выводом на страницу
             IQueryable<News> source = _websiteDB.News;
@@ -81,8 +84,11 @@ namespace Simple_CMS.Controllers
 
         #region Создать новость [GET]
         [HttpGet]
-        public IActionResult AddNews()
+        public async Task<IActionResult> AddNews()
         {
+            Settings settings = await _websiteDB.Settings.FirstAsync(s => s.SettingsName == "baseSettings");
+            ViewBag.ImagesPerNews = settings.ImagesPerNews;
+
             ViewBag.Title = "Создать новость";
 
             return View();
@@ -93,10 +99,13 @@ namespace Simple_CMS.Controllers
         [HttpPost]
         public async Task<IActionResult> AddNews(AddNewsViewModel model, IFormFileCollection uploads)
         {
+            Settings settings = await _websiteDB.Settings.FirstAsync(s => s.SettingsName == "baseSettings");
+            ViewBag.ImagesPerNews = settings.ImagesPerNews;
+
             // Проверяем, чтобы размер файлов не превышал заданный объем
             foreach (var file in uploads)
             {
-                if (file.Length > 2097152)
+                if (file.Length > settings.NewsImageSize) // NewsImageLimit !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 {
                     ModelState.AddModelError("NewsImage", $"Файл \"{file.FileName}\" превышает установленный лимит 2MB.");
                     break;
@@ -113,7 +122,7 @@ namespace Simple_CMS.Controllers
                     NewsTitle = model.NewsTitle,
                     NewsBody = model.NewsBody,
                     NewsDate = DateTime.Now,
-                    UserName = "Mnemonic" // В рабочем варианте будет брать имя из User.Identity
+                    UserName = User.Identity.Name
                 };
 
                 // Далее начинаем обработку изображений

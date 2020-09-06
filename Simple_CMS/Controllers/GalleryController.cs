@@ -130,7 +130,7 @@ namespace Simple_CMS.Controllers
                         GalleryTitle = model.GalleryTitle,
                         GalleryDescription = model.GalleryDescription,
                         GalleryDate = DateTime.Now,
-                        UserName = "Mnemonic", // Хардкод. Потом обязательно заменить !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        UserName = User.Identity.Name,
                         GalleryPreviewImage = pathPreview
                     };
 
@@ -148,7 +148,7 @@ namespace Simple_CMS.Controllers
                         GalleryTitle = model.GalleryTitle,
                         GalleryDescription = model.GalleryDescription,
                         GalleryDate = DateTime.Now,
-                        UserName = "Mnemonic", // Хардкод. Потом обязательно заменить !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        UserName = User.Identity.Name,
                         // Вбиваем картинку-заглушку
                         GalleryPreviewImage = "/files/images/preview/nopreview.jpg" // Хардкод. Потом обязательно заменить !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     };

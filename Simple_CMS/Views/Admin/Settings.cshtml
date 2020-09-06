@@ -1,0 +1,28 @@
+﻿@model Simple_CMS.ViewModels.Admin.SettingsViewModel
+
+<table class="content">
+    <tr>
+        <td class="content">
+            <form asp-action="Settings" asp-controller="Admin" method="post">
+                <div>
+                    <label asp-for="NewsImageSize"></label><br />
+                    <input class="test" type="number" asp-for="NewsImageSize" />
+                </div>
+                <br />
+                <div>
+                    <label asp-for="ImagesPerNews"></label><br />
+                    <input class="test" type="number" asp-for="ImagesPerNews" />
+                </div>
+                <br />
+                <div>
+                    <label asp-for="NewsPerPage"></label><br />
+                    <input class="test" type="number" asp-for="NewsPerPage" />
+                </div>
+                <br />
+                <div>
+                    <input type="submit" value="Применить" />
+                </div>
+            </form>
+        </td>
+    </tr>
+</table>

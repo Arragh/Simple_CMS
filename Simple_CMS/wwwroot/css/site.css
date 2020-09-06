@@ -149,3 +149,8 @@ p.pagetitle {
     font-weight: bold;
     font-size: 20px;
 }
+
+input.test {
+    width: 80px;
+    border-color: #1e5791;
+}

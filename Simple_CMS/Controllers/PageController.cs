@@ -55,7 +55,7 @@ namespace Simple_CMS.Controllers
                     PageTitle = model.PageTitle,
                     PageBody = SpecSymbolsToView(model.PageBody), // Замена символов на их безопасные шестнадцатеричные значения
                     PageDate = DateTime.Now,
-                    UserName = "Mnemonic" // Хардкод. Потом обязательно заменить !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    UserName = User.Identity.Name
                 };
 
                 await _websiteDB.Pages.AddAsync(page);
